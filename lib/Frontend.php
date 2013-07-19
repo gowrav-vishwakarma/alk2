@@ -6,7 +6,7 @@ class Frontend extends ApiFrontend {
     function init(){
         parent::init();
         // Keep this if you are going to use database on all pages
-        //$this->dbConnect();
+        $this->dbConnect();
         $this->requires('atk','4.2.0');
 
         // This will add some resources from atk4-addons, which would be located
