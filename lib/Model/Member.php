@@ -10,6 +10,7 @@ class Model_Member extends Model_Table {
 		$this->addField('name');
 		$this->addField('username');
 		$this->addField('password');
+		$this->addField('mobile_number');
 		$this->addField('bank_name');
 		$this->addField('IFSC');
 		$this->addField('account_number');
@@ -43,26 +44,39 @@ class Model_Member extends Model_Table {
 		$this->hasMany('WithdrawalRequest','from_id');
 		
 		$this->hasMany('FundRequest','from_id'); // Dene wale
-		$this->hasMany('RequestDistribution','to_id'); //Lene Wale
+		// $this->hasMany('RequestDistribution','to_id'); //Lene Wale
 
 
-		$this->addHook('beforeSave',$this);
+		// $this->addHook('beforeSave',$this);
+		$this->addHook('beforeInsert',$this);
 		$this->addHook('afterInsert',$this);
 
 	}
 
-	function beforeSave(){
+	function beforeInsert(){
 		// GET NEW PATH FROM SPONSOR IF NEEDED.. CURRENTLY LEAVING
 
+		$existing= $this->add('Model_Member');
+		$existing->addCondition('username',$this['username']);
+		$existing->tryLoadAny();
+
+		if($existing->loaded()) 
+			throw $this->exception('This username already exists, try different one')
+					->addMoreInfo('username',$this['username']);
+
 	}
 
-	function afterInsert(){
-		$this->sendRemaining75PercentRequests();
+	function afterInsert($obj,$new_id){
+		$current_user = $this->api->auth->model;
+		$current_user['fund_available'] = $current_user['fund_available'] - $this->ref('kit_id')->get('pin_amount');
+		$current_user->save();
+		$this->sendRemaining75PercentRequests($new_id);
+		$this->api->auth->model->reload();
 	}
 
-	function sendRemaining75PercentRequests(){
+	function sendRemaining75PercentRequests($new_id){
 		$fund = $this->ref('kit_id')->get('joining_amount') - $this->ref('kit_id')->get('pin_amount');
-		$this->add('Model_FundRequest')->generateNewRequest($this->id,$fund);
+		$this->add('Model_FundRequest')->generateNewRequest($new_id,$fund);
 	}
 
 	function transferFund($to,$fund){
@@ -85,6 +99,7 @@ class Model_Member extends Model_Table {
 		$this['status'] = 'Approved';
 		$this['is_activated'] = true;
 		$this['activated_on'] = date('Y-m-d H:i:s');
+		$this['fund_available'] = $this['fund_available'] + (($this->ref('kit_id')->get('joining_amount')) / 2);
 		$this->save();
 		$this->distributeLevelAmountAbove();
 	}

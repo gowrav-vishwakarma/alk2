@@ -14,13 +14,21 @@ class page_user_newregistration extends page_user {
 
 
 		if($form->isSubmitted()){
-			//check sposor 
 
-			$sposor=$this->add('Model_Member');
+			//check sposor 
+			$sponsor=$this->add('Model_Member');
 			$sponsor->addCondition('username',$form->get('sponsor'));
-			$sposor->tryLoadAny();
+			$sponsor->tryLoadAny();
 
 			if(!$sponsor->loaded()) $form->displayError('sponsor','This is not a valid sponsor, Try Another');
+
+			// CHECK username
+
+			$existing= $this->add('Model_Member');
+			$existing->addCondition('username',$form->get('username'));
+			$existing->tryLoadAny();
+
+			if($existing->loaded()) $form->displayError("username",'This username already exists, try different one');
 
 			//check fund available
 			if($form->model->ref('kit_id')->get('pin_amount') > $this->api->auth->model->get('fund_available'))
@@ -33,7 +41,7 @@ class page_user_newregistration extends page_user {
 			//update wallet
 			$this->add('MyHelper')->updateWallet();
 
-			$form->js()->univ()->reload(array('success'=>1))->execute();
+			$form->js()->reload(array('success'=>1))->execute();
 
 		}
 	}

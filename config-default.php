@@ -11,4 +11,3 @@ $config['url_prefix']='?page=';
 # values. For more options look at:
 #
 #  http://www.atk4.com/doc/config
-

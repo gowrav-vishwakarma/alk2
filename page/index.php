@@ -1,5 +1,5 @@
 <?php
-class page_index extends Page {
+class page_index extends page_user {
     function init(){
         parent::init();
         // Start your code here
