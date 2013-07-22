@@ -1,9 +1,13 @@
 <?php
-class page_index extends page_user {
+class page_index extends Page {
     function init(){
         parent::init();
         // Start your code here
 
-        $this->add('CRUD')->setModel('FundRequest');
+        // $this->add('CRUD')->setModel('FundRequest');
+    }
+
+    function defaultTemplate(){
+	    return	array('page/index');
     }
 }

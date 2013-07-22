@@ -3,6 +3,7 @@
  * Consult documentation on http://agiletoolkit.org/learn 
  */
 class Frontend extends ApiFrontend {
+    public $menu;
     function init(){
         parent::init();
         // Keep this if you are going to use database on all pages
@@ -18,6 +19,8 @@ class Frontend extends ApiFrontend {
                         )
                     ))
             ->setParent($this->pathfinder->base_location);
+
+        $this->addLocation('.',array( "addons"=>'xavoc-addons' ));
 
         // A lot of the functionality in Agile Toolkit requires jUI
         $this->add('jUI');
@@ -38,6 +41,7 @@ class Frontend extends ApiFrontend {
             //->check()
             ;
         $auth->setModel('Member','username','password');
+        $auth->allowPage(array('index'));
         $auth->check();
 
         // This method is executed for ALL the pages you are going to add,
@@ -49,10 +53,16 @@ class Frontend extends ApiFrontend {
 
         // If you are using a complex menu, you can re-define
         // it and place in a separate class
-        $this->add('Menu',null,'Menu')
-            ->addMenuItem('index','Welcome')
-
+        if(!$this->api->isAjaxOutput()){
+            $this->menu = $this->add('boot/Menu',array('fixed_top'=>false),'Menu');
+            $this->menu->addMenuItem('index','Welcome')
+            ->addMenuItem('oppertunity','Oppertunity')
+            ->addMenuItem('user_dashboard','Member Area')
             ;
+
+            // $this->menu->setBrand('FAST RICH');
+            // $this->api->template->tryDel('header');
+        }
 
     }
 }

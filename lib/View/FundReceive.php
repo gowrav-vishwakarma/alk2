@@ -11,7 +11,8 @@ class View_FundReceive extends View{
 		$this->template->trySet('status',$model['status']);
 		$this->template->trySet('fund',$model['fund']);
 
-		$link = $this->add('HtmlElement',null,'manage_slip')->setElement('a')->setAttr('href','#')->set('Manage Slip');
+		// $link = $this->add('HtmlElement',null,'manage_slip')->setElement('a')->setAttr('href','#')->set('Manage Slip');
+		$link = $this->add('Button',null,'manage_slip')->set('Manage Slip');
 		$link->js('click',$this->js()->univ()->frameURL("Receiver :: Manage Slip",$this->api->url("user/manageslip/byreceiver",array('request_distribution_id'=>$model->id))));
 
 		parent::setModel($model);

@@ -10,6 +10,20 @@ class Model_RequestDistribution extends Model_Table {
 		$this->addField('on_date')->type('date')->defaultValue(date('Y-m-d'));
 		$this->addField('fund');
 		$this->add("filestore/Field_Image","image_id")->type('image');
+
+		$this->addHook('afterInsert',$this);
+
+	}
+
+	function afterInsert(){
+		$req=$this->ref('fund_request_id');
+		$req['fund_distributed'] = $req['fund_distributed'] + $this['fund'];
+		$req->save();
+
+		$wr = $this->ref('withdrawl_request_id');
+		$wr['alloted_fund'] = $wr['alloted_fund'] + $this['fund'];
+		$wr->save();
+		
 	}
 
 	function is_approved(){

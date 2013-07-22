@@ -1,49 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-		<title><?page_title?>Agile Toolkit<?/?></title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="shortcut icon" href="<?template?>images/favicon.ico<?/?>" type="image/x-icon" />
+	<head>
+		<meta charset="utf-8">
+		<title>alk2</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<!-- Le styles -->
 		<link rel="stylesheet" type="text/css" href="<?template?>css/jquery-ui.css<?/?>" />
-		<link rel="stylesheet" type="text/css" href="<?template?>css/atk-main.css<?/?>" />
-		<link rel="stylesheet" type="text/css" href="<?template?>css/atk-custom.css<?/?>" />
+		<link href="<?template?>css/bootstrap.css<?/?>" rel="stylesheet">
+		<style type="text/css">
+			body { padding-top: 60px; padding-bottom: 40px; }
+		</style>
+		<link href="<?template?>css/bootstrap-responsive.css<?/?>" rel="stylesheet">
+		<link href="<?template?>css/bootstrap-lightbox.css<?/?>" rel="stylesheet">
+		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<!-- Le fav and touch icons -->
+		<link rel="shortcut icon" href="http://twitter.github.com/bootstrap/assets/images/favicon.ico">
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="http://twitter.github.com/bootstrap/assets/images/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="http://twitter.github.com/bootstrap/assets/images/apple-touch-icon-114x114.png">
+		<!-- <link rel="stylesheet" type="text/css" href="<?template?>css/jquery-ui.css<?/?>" /> -->
+		<link rel="stylesheet/less" href="<?template?>css/myless.less<?/template?>" type="text/css">
 		<?$js_include?>
+		<script src="<?template?>js/less.min.js<?/template?>"></script>
 		<!--[if IE 8]>
-			<link rel="stylesheet" type="text/css" href="<?template?>css/ie8.css<?/?>"/>
-			<script type="text/javascript" src="<?template?>css/ie8.js<?/?>"></script>
+		<link rel="stylesheet" type="text/css" href="<?template?>css/ie8.css<?/?>"/>
+		<script type="text/javascript" src="<?template?>css/ie8.js<?/?>"></script>
 		<![endif]-->
 		<script type="text/javascript">
 			$(function(){
-				<?$document_ready?>
-			});
+		<?$document_ready?>
+		});
 		</script>
+		
 	</head>
 	<body>
 		<div id="atk-layout" class="atk-wrapper">
-			<div id="header">
-				<?logo?><div id="atk-logo" class="ui-widget-header float-left"><a 
-                                    href="<?page?>index<?/?>"><img src="<?template?>images/logo.png<?/?>" /></a></div><?/logo?>
-				<div id="header-right">
-					<?Menu?>
-                            <div class="atk-menu atk-menu-horizontal ui-widget">
-                                <ul>
-								    <li class="ui-state-default"><a href="javascript:void(0)">Menu is not defined</a></li>
-                                </ul>
-							</div>
-					<?/?>
-					<?wallet?><div id="atk-version"><b>Agile Toolkit™</b><br/><i><?$version?></i></div><?/wallet?>
-				</div>
-			</div>
+			<?$Menu?>
+			<?$welcome?>
 			<?$Content?>
 			<div id="atk-footer-guard"></div>
 		</div>
-		<?Footer?>
-		<div id="footer" class="atk-wrapper">
-			<?footer_text?>
-			This system is implemented using <a href="http://agiletoolkit.org/">Agile Toolkit</a>. &copy; 1999–2012. <a href="http://agiletoolkit.org/about/license">See License</a>
-			<?/?>
-		</div>
-		<?/?>
-		<div id="atk-growl-holder" class="atk-growl"></div>
+		<?footer?>
+		    <div class="footer">
+		        <div class="footer-inner">
+		            		            
+		        </div>
+		    </div>
+	    <?/footer?>
+
+		<!-- Le javascript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="<?template?>js/bootstrap-transition.js<?/?>"></script>
+		<script src="<?template?>js/bootstrap-alert.js<?/?>"></script>
+		<script src="<?template?>js/bootstrap-modal.js<?/?>"></script>
+		<script src="<?template?>js/bootstrap-dropdown.js<?/?>"></script>
+		<script src="<?template?>js/bootstrap-scrollspy.js<?/?>"></script>
+		<script src="<?template?>js/bootstrap-tab.js<?/?>"></script>
+		<script src="<?template?>js/bootstrap-tooltip.js<?/?>"></script>-->
+		<script src="<?template?>js/bootstrap-popover.js<?/?>"></script>
+		<script src="<?template?>js/bootstrap-button.js<?/?>"></script>
+		<script src="<?template?>js/bootstrap-collapse.js<?/?>"></script>
+		<script src="<?template?>js/bootstrap-carousel.js<?/?>"></script>
+		<script src="<?template?>js/bootstrap-typeahead.js<?/?>"></script>
+		<script src="<?template?>js/bootstrap-lightbox.min.js<?/?>"></script>
 	</body>
 </html>

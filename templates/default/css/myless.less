@@ -1,0 +1,173 @@
+@themeColor: orange;
+
+@import "atk-main.less";
+@import "less/bootstrap.less";
+
+
+.front_blocks{
+	p {
+		text-align: justify;
+	}	
+}
+
+.atk-menu ul {
+	.nav;
+}
+
+.ui-tabs {
+	.nav;
+	.nav-tabs;
+}
+.navbar .brand {
+	padding: 0px 50px;
+	margin-top: 20px;
+	border: none;
+	.navbar-inner{
+		border: none;
+	}
+}
+
+body {
+	background: url('../img/subtle_white_feathers.png');
+
+}
+
+
+.footer{
+	.navbar;
+	.footer-inner{
+		.navbar-inner;
+		min-height: 100px;
+		border: none;
+		.border-radius(0px);
+	}
+}
+
+.hero-unit {
+	img{
+		padding: 2px;
+		margin: 20px;
+	}
+	p{
+		text-align: justify;
+	}
+}
+
+.text-justify {
+	text-align: justify;
+}
+.rotate-on-mouse-hover2 {
+	&:hover,
+	&:focus{
+		.transition-duration(0.5s);
+		.translate(10px,0px);
+		max-width: 120%;
+	}
+	.transition-duration(0.5s);
+	.translate(-10px,0px);
+	max-width: 100%;
+}
+h1 strong {
+	color: darken(@themeColor,30%);
+	text-shadow: 0 -1px 0 darken(@black, 30%)
+}
+
+h1 b {
+	color: darken(@themeColor,10%);
+	text-shadow: 0 -1px 0 darken(@black, 10%)
+}
+
+
+p small.muted {
+	color: darken(@themeColor,30%);
+	text-shadow: 0 -1px 0 darken(@black, 30%)
+}
+.footer{
+	.footer-inner{
+		
+		text-align: center;
+		color:white;
+	}
+}
+
+.footer{
+	.footer-inner a{
+		
+		text-align: center;
+		color:white;
+	}
+}
+
+.atk-wrapper{
+	width: 100%;
+}
+
+
+/* */
+
+.outer{
+	border:2px solid;
+	border-radius:25px;
+	text-align: center;
+	margin-top: 25px;
+	background-color: lightblue;
+	height: 100%;
+}
+
+
+
+
+.inner1{
+	border:2px solid;
+	.border-radius(5px);
+	.gradientBar(white,pink);
+	float: left;
+	width:30%;
+	margin-left: 30px; 
+	margin-top: 10px;
+	color: black;
+
+}
+
+.inner2{
+	border:2px solid;
+	.border-radius(5px);
+	.gradientBar(white,pink);
+	width:40%;
+	float: right;
+	margin-top: 10px;
+	margin-right: 10px; 
+	color: black;
+
+}
+
+.secondrow{
+	margin-top: 5px;
+}
+
+.inner3{
+	border:2px solid;
+	.border-radius(5px);
+	.gradientBar(white,lightblue);
+	float: left;
+	width:30%;
+	margin-left: 30px; 
+	margin-bottom: 10px;
+	color: black;
+
+}
+
+.manageslip{
+	margin-bottom: 10px;
+}
+
+.inner4{
+	border:2px solid;
+	.border-radius(5px);
+	.gradientBar(white,lightblue);
+	width:40%;
+	float: right;
+	margin-right: 10px; 
+	margin-bottom: 10px;
+	color: black;
+}

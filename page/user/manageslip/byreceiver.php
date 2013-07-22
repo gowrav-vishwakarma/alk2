@@ -20,7 +20,7 @@ class page_user_manageslip_byreceiver extends Page {
 		$left=$cols->addColumn(6);
 		$right=$cols->addColumn(6);
 
-		if($request_distribution['status'] == 'Pending'){
+		if($request_distribution['status'] == 'Pending' AND $request_distribution['image_id'] != 0){
 			$approve_form = $left->add('Form');
 			$approve_form->addSubmit('Approve');
 

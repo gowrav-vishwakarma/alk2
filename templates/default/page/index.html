@@ -1,0 +1,64 @@
+<!-- Main Area -->
+<div class="container">
+          <h1 class="container muted logo text-center rotate-on-mouse-hover2"><b>Fast</b> <strong>Rich</strong> <b>System.</b></h1>
+          <p class="text-center"><small class="muted">--Because Money Metters...</small></p>
+        </div>
+<div class="container">
+    <div id="main_area" class="well">
+        <!-- Slider -->
+        <div class="row">
+            <div class="span12" id="slider">
+                <!-- Top part of the slider -->
+                <div class="row">
+                    <div class="span12" id="carousel-bounding-box">
+                        <div id="myCarousel" class="carousel slide">
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                            <div class="active item" data-slide-number="0"><img width="900" height="350" src="<?template?>img/slide1.png<?/?>" /></div>
+                                <div class="item" data-slide-number="1"><img width="900" height="350" src="<?template?>img/banner1.jpg<?/?>"/></div>
+                                <div class="item" data-slide-number="2"><img width="900" height="350" src="<?template?>img/slide11.jpg<?/?>" /></div>
+                                <div class="item" data-slide-number="3"><img width="900" height="350" src="<?template?>img/slide8.jpeg<?/?>"/></div>
+                                <div class="item" data-slide-number="4"><img width="900" height="350" src="<?template?>img/slide9.jpg<?/?>" /></div>
+                            </div>
+                            <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
+                            <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
+                        </div>
+                    </div>                
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+    <div class="container">
+        <div class="row-fluid">
+        <h1 align="center">Welcome To Fast Rich System.</h1>
+    </div>
+</div>
+
+    <script>
+    jQuery(document).ready(function($) {
+    
+    $('.carousel').carousel({
+        interval: 3000
+    });
+    
+    $('#carousel-text').html($('#slide-content-0').html());
+    
+    //Handles the carousel thumbnails
+    $('[id^=carousel-selector-]').click( function(){
+    var id_selector = $(this).attr("id");
+    var id = id_selector.substr(id_selector.length -1);
+    var id = parseInt(id);
+    $('#myCarousel').carousel(id);
+    });
+    
+    
+    // When the carousel slides, auto update the text
+    $('#myCarousel').on('slid', function (e) {
+    var id = $('.item.active').data('slide-number');
+    $('#carousel-text').html($('#slide-content-'+id).html());
+    });
+    
+    
+    });
+    </script>

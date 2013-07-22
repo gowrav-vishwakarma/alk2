@@ -7,13 +7,12 @@ class Model_FundRequest extends Model_Table {
 		$this->hasOne('Member','from_id');
 		$this->addField('on_date')->type('date')->defaultValue(date('Y-m-d H:i:s'));
 		$this->addField('fund_requested');
+		$this->addField('fund_distributed')->defaultValue(0);
 		$this->addField('status')->enum(array('Pending','Distributed','Finalized'))->defaultValue('Pending');
 		$this->addField('approved_rejected_date')->type('date');
 		$this->hasMany('RequestDistribution','fund_request_id');
 
-		$this->addExpression('distributed_fund')->set(function ($m,$q){
-			return $m->refSQL('RequestDistribution')->sum('fund');
-		});
+		$this->addExpression('to_distribute')->set('fund_requested - fund_distributed');
 
 		$this->addExpression('approved_fund')->set(function ($m,$q){
 			return $q->dsql()->table('request_distribution')->field('sum(fund)')->where(array(array('status','Approved'),array('status','Approved By Admin')))->where('fund_request_id',$m->getField('id'));
