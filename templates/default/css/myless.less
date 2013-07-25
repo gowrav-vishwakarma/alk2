@@ -10,14 +10,24 @@
 	}	
 }
 
+@import url(http://fonts.googleapis.com/css?family=Autour+One);
+
 .atk-menu ul {
 	.nav;
+}
+
+.navbar .nav > li > a{
+	font-family: 'Autour One', cursive;
+	font-size: 18px;
+	
+
 }
 
 .ui-tabs {
 	.nav;
 	.nav-tabs;
 }
+
 .navbar .brand {
 	padding: 0px 50px;
 	margin-top: 10px;
@@ -26,10 +36,16 @@
 	.navbar-inner{
 		border: none;
 	}
+
+	img {
+		width: 200px;
+		height: 90px;
+	}
 }
 
 body {
 	background: url('../img/subtle_white_feathers.png');
+	font-size:15px;
 
 }
 
@@ -181,4 +197,21 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 
 .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container{
 	width: 940px;
+}
+
+.sentclass{
+  .inner4;
+  float: left;
+  background-image: url("send_user.png"); 
+  background-repeat:no-repeat;
+  height: 50px;
+  padding-left: 80px;
+  padding-top:20px;
+  font-size:20px;
+}
+
+.reciveclass{
+	.sentclass;
+  background-image: url("recive_user.png"); 
+
 }

@@ -9,11 +9,11 @@ class page_user_dashboard extends page_user {
 		$left=$cols->addColumn(6);
 		$right=$cols->addColumn(6);
 
-		$left->add('H4')->set('Send Funds To');
+		$left->add('H4')->set('Send Funds To')->addClass('sentclass');
 		$fsl=$left->add('View_FundSendList');
 		$fsl->setModel($this->api->auth->model->ref('FundRequest')->tryLoadAny());
 
-		$right->add('H4')->set('Receive Funds From');
+		$right->add('H4')->set('Receive Funds From')->addClass('reciveclass');
 		$fsl=$right->add('View_FundReceiveList');
 
 		$req_dist = $this->add('Model_RequestDistribution');

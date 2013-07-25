@@ -7507,3 +7507,17 @@ input[type="color"],
 .navbar-fixed-bottom .container {
   width: 940px;
 }
+
+.sentclass{
+  background-image: url("send_user.png"); 
+  background-repeat:no-repeat;
+  height: 50px;
+  padding-left: 50px;
+}
+
+.reciveclass{
+  background-image: url("recive_user.png"); 
+  background-repeat:no-repeat;
+  height: 50px;
+  padding-left: 50px;
+}

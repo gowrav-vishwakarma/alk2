@@ -31,6 +31,10 @@ class page_user_newregistration extends page_user {
 			if($form->get('password') != $form->get('re_password'))
 				$form->displayError('re_password','Password must match');
 
+			//check user name length
+
+			if(strlen($form->get('username'))>6) $form->displayError('username','Username can nott be greater then 6 character');
+
 			//check sposor 
 			$sponsor=$this->add('Model_Member');
 			$sponsor->addCondition('username',$form->get('sponsor'));

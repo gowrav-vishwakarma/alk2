@@ -6,17 +6,17 @@ class Model_Member extends Model_Table {
 
 
 		$this->hasOne('Member','sponsor_id');
-		$this->hasOne('Kit','kit_id')->caption('Commitement Amount');
-		$this->addField('name');
-		$this->addField('username');
-		$this->addField('password')->type('password');
-		$this->addField('mobile_number');
-		$this->addField('email');
-		$this->addField('city');
-		$this->addField('state');
-		$this->addField('bank_name');
-		$this->addField('IFSC');
-		$this->addField('account_number');
+		$this->hasOne('Kit','kit_id')->caption('Commitement Amount')->mandatory("This is Must");
+		$this->addField('name')->mandatory("This is Must");
+		$this->addField('username')->mandatory("This is Must");
+		$this->addField('password')->type('password')->mandatory("This is Must");
+		$this->addField('mobile_number')->mandatory("This is Must");
+		$this->addField('email')->mandatory("This is Must");
+		$this->addField('city')->mandatory("This is Must");
+		$this->addField('state')->mandatory("This is Must");
+		$this->addField('bank_name')->mandatory("This is Must");
+		$this->addField('IFSC')->mandatory("This is Must");
+		$this->addField('account_number')->mandatory("This is Must");
 		$this->addField('bank_branch');
 		$this->addField('fund_available');
 		$this->addField('is_activated')->type('boolean')->defaultValue(false);
