@@ -25,6 +25,8 @@ class page_user extends Page {
 		$menu->addMenuItem('user_myincome','My Income');
 		$menu->addMenuItem('user_fundtransfer','Fund Transfer');
 		$menu->addMenuItem('user_profile','Change Password');
+		$menu->addMenuItem('user_directsponsors','Direct Sponsors');
+		$menu->addMenuItem('user_leveldetails','Level Details');
 		$menu->addMenuItem('logout','Logout');
 
 		$v=$this->add('View_Wallet');
