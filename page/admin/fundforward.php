@@ -65,8 +65,8 @@ class page_admin_fundforward extends Page {
 			}
 
 			$form->js(null,array(
-							$form->js()->_selector('.sendergrid')->trigger('reload'),
-							$form->js()->_selector('.receivergrid')->trigger('reload'),
+							$form->js()->_selector('.sendergrid')->trigger('reload_me'),
+							$form->js()->_selector('.receivergrid')->trigger('reload_me'),
 							)
 					)->univ()->closeDialog()->execute();
 

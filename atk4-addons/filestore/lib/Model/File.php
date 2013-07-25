@@ -92,13 +92,20 @@ class Model_File extends \Model_Table {
         if($mime_type == null){
             $path = $this->get('filename')?$this->getPath():$this->import_source;
             if(!$path)throw $this->exception('Load file entry from filestore or import');
-
-            if(!function_exists('finfo_open'))throw $this->exception('You have to enable php_fileinfo extension of PHP.');
-            $finfo = finfo_open(FILEINFO_MIME_TYPE, $this->magic_file);	
+    
+        $ext = explode(".",$path);
+        $ext=$ext[count($ext)-1];
+        
+        $mime_type = "image/$ext";
+        
+        /*
+            if(!function_exists('finfo_open'))throw $this->exception('You have to enable php_fileinfo extension of PHP. '.$path)->addMoreInfo('Path',$path);
+            $finfo = finfo_open(FILEINFO_MIME_TYPE, $this->magic_file); 
             if($finfo===false)throw $this->exception("Can't find magic_file in finfo_open().")
                 ->addMoreInfo('Magic_file: ',isnull($this->magic_file)?'default':$this->magic_file);
             $mime_type = finfo_file($finfo, $path);
             finfo_close($finfo);
+            */
         }
         $c=$this->ref("filestore_type_id");
         $data = $c->getBy('mime_type',$mime_type);

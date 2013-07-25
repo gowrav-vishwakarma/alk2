@@ -1,7 +1,12 @@
-<div id="<?$_name?>" class="<?$class?>">
- To : <?to?>Fund Request to<?/to?><br/>
- Request Transfered On : <?on_date?>on date<?/on_date?> <br/>
- Status : <?status?>status<?/status?> <br/>
- Fund To Send : <?fund?>fund<?/fund?> <br/>
- <?$manage_slip?>
+<div id="<?$_name?>" class="outer <?$class?>">
+ <div class='row'>
+<div class="inner1">To : <?to?>Fund Request to<?/to?></div>
+ <div class="inner2">Request Transfered On : <?on_date?>on date<?/on_date?></div>
+</div>
+ <div style="clear:both"></div>
+ <div class="row secondrow">
+ <div class="inner3">Status : <?status?>status<?/status?></div>
+ <div class="inner4"> Fund To Send : <?fund?>fund<?/fund?></div>
+</div>
+ <div class="manageslip"><?$manage_slip?></div>
 </div>

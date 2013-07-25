@@ -4,6 +4,7 @@ class page_user_manageslip_byreceiver extends Page {
 	function init(){
 		parent::init();
 		$this->api->stickyGET('request_distribution_id');
+		$this->api->stickyGET('view_id');
 		
 		$request_distribution = $this->add('Model_RequestDistribution');
 		$request_distribution->addCondition('id',$_GET['request_distribution_id'])->load($_GET['request_distribution_id']);
@@ -29,11 +30,12 @@ class page_user_manageslip_byreceiver extends Page {
 
 			if($approve_form->isSubmitted()){
 				$request_distribution->approve();
-				$approve_form->js()->univ()->closeDialog()->execute();
+				$approve_form->js(null,$approve_form->js()->_selector("#".$_GET['view_id'])->trigger('reload_me'))->univ()->closeDialog()->execute();
 			}
 
 			if($reject_form->isSubmitted()){
-
+				$request_distribution->reject();
+				$approve_form->js(null,$approve_form->js()->_selector("#".$_GET['view_id'])->trigger('reload_me'))->univ()->closeDialog()->execute();				
 			}
 
 		}

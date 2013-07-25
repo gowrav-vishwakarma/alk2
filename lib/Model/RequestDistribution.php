@@ -38,7 +38,7 @@ class Model_RequestDistribution extends Model_Table {
 		$this->save();
 
 		// If all distributions from this's fund_request_id are approved or approved by admin 
-			// requester mark active and distribute amount of level in above.
+		// requester mark active and distribute amount of level in above.
 
 		$FundRequest=$this->add('Model_FundRequest');
 		$FundRequest->load($this['fund_request_id']);
@@ -50,10 +50,24 @@ class Model_RequestDistribution extends Model_Table {
 			$FundRequest->ref('from_id')->approve();
 		}
 
+		$wr = $this->add('Model_WithdrawRequest');
+		$wr->load($this['withdrawl_request_id']);
+
+		$wr_dist = $wr->ref('RequestDistribution')->addCondition('status','not like','Approv%');
+		$wr_dist->tryLoadAny();
+
+		if(!$wr_dist->loaded()){
+			$wr['status']='Approved';
+			$wr['approved_on_date'] = date('Y-m-d H:i:s');
+			$wr->save();
+		}
+
+
 	}
 
-	function reject(){
-
+	function reject($status='Rejected'){
+		$this['status']=$status;
+		$this->save();
 	}
 
 	function adminApprove(){
@@ -61,7 +75,7 @@ class Model_RequestDistribution extends Model_Table {
 	}
 
 	function adminReject(){
-
+		$this->reject('Rejected By Admin');
 	}
 
 }

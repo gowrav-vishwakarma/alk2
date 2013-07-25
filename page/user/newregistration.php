@@ -3,17 +3,33 @@ class page_user_newregistration extends page_user {
 	function init(){
 		parent::init();
 
-		$form=$this->add('Form');
+		$cols = $this->add('Columns');
+		$left = $cols->addColumn(7);
+
+		$form=$left->add('Form');
 		if($_GET['success']){
 			$form->add('View_Info')->set('Member Added Successfully');
 		}
-		$form->setModel('Model_Member',array('kit_id','name','username','password','bank_name','IFSC','account_number'));
+
+		$form->setModel('Model_Member',array('kit_id','name','username','password',"mobile_number",'email',"city","state",'bank_name','IFSC','account_number','bank_branch'));
 		$form->addField('line','sponsor');
-		$form->add('Order')->move('sponsor','before','name')->now();
+		$form->addField('password','re_password');
+		
+		$form->add('Order')->move('sponsor','before','name')->move('re_password','after','password')->now();
+
 		$form->addSubmit('Register');
 
 
 		if($form->isSubmitted()){
+
+			$this->api->auth->model->reload();
+
+			// if(!$this->api->auth->model['is_activated']){
+			// 	$form->displayError('name','You have not completed your commitment, You cannot use your fund');
+			// }
+
+			if($form->get('password') != $form->get('re_password'))
+				$form->displayError('re_password','Password must match');
 
 			//check sposor 
 			$sponsor=$this->add('Model_Member');
@@ -22,8 +38,8 @@ class page_user_newregistration extends page_user {
 
 			if(!$sponsor->loaded()) $form->displayError('sponsor','This is not a valid sponsor, Try Another');
 
-			// CHECK username
 
+			// CHECK username
 			$existing= $this->add('Model_Member');
 			$existing->addCondition('username',$form->get('username'));
 			$existing->tryLoadAny();
@@ -41,7 +57,7 @@ class page_user_newregistration extends page_user {
 			//update wallet
 			$this->add('MyHelper')->updateWallet();
 
-			$form->js()->reload(array('success'=>1))->execute();
+			$form->js(null,$form->js()->_selector('.wallet')->trigger('reload_me'))->reload(array('success'=>1))->execute();
 
 		}
 	}

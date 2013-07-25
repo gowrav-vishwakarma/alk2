@@ -6,14 +6,18 @@ class Model_Member extends Model_Table {
 
 
 		$this->hasOne('Member','sponsor_id');
-		$this->hasOne('Kit','kit_id');
+		$this->hasOne('Kit','kit_id')->caption('Commitement Amount');
 		$this->addField('name');
 		$this->addField('username');
-		$this->addField('password');
+		$this->addField('password')->type('password');
 		$this->addField('mobile_number');
+		$this->addField('email');
+		$this->addField('city');
+		$this->addField('state');
 		$this->addField('bank_name');
 		$this->addField('IFSC');
 		$this->addField('account_number');
+		$this->addField('bank_branch');
 		$this->addField('fund_available');
 		$this->addField('is_activated')->type('boolean')->defaultValue(false);
 		$this->addField('join_on')->type('date')->defaultValue(date('Y-m-d H:i:s'));
@@ -26,6 +30,7 @@ class Model_Member extends Model_Table {
 		$this->addField('day_4_growth')->defaultValue(0);
 		$this->addField('day_5_growth')->defaultValue(0);
 		$this->addField('day_6_growth')->defaultValue(0);
+		$this->addField('day_7_growth')->defaultValue(0);
 		$this->addField('level_1_fund')->defaultValue(0);
 		$this->addField('level_2_fund')->defaultValue(0);
 		$this->addField('level_3_fund')->defaultValue(0);
@@ -37,19 +42,31 @@ class Model_Member extends Model_Table {
 		$this->addField('level_9_fund')->defaultValue(0);
 		$this->addField('level_10_fund')->defaultValue(0);
 		$this->addField('path');
+		$this->addField('last_daily_run_at')->defaultValue(null);
 
 		$this->hasMany('Member','sponsor_id');
 		$this->hasMany('FundTransfer','from_id',null,'FundTransferFrom');
 		$this->hasMany('FundTransfer','to_id',null,'FundTransferTo');
-		$this->hasMany('WithdrawalRequest','from_id');
+		$this->hasMany('WithdrawRequest','from_id');
 		
 		$this->hasMany('FundRequest','from_id'); // Dene wale
 		// $this->hasMany('RequestDistribution','to_id'); //Lene Wale
 
 
-		// $this->addHook('beforeSave',$this);
+		$this->addHook('beforeModify',$this);
 		$this->addHook('beforeInsert',$this);
 		$this->addHook('afterInsert',$this);
+
+	}
+
+
+	function beforeModify(){
+		$check_username = $this->add('Model_Member');
+		$check_username->addCondition('username',$this['username']);
+		$check_username->addCondition('id','<>',$this->id);
+		$check_username->tryLoadAny();
+
+		if($check_username->loaded()) throw $this->exception("Username already exists");
 
 	}
 
@@ -67,11 +84,10 @@ class Model_Member extends Model_Table {
 	}
 
 	function afterInsert($obj,$new_id){
-		$current_user = $this->api->auth->model;
+		$current_user = $this->add('Model_Member')->load($this->api->auth->model->id);
 		$current_user['fund_available'] = $current_user['fund_available'] - $this->ref('kit_id')->get('pin_amount');
 		$current_user->save();
 		$this->sendRemaining75PercentRequests($new_id);
-		$this->api->auth->model->reload();
 	}
 
 	function sendRemaining75PercentRequests($new_id){
@@ -101,6 +117,13 @@ class Model_Member extends Model_Table {
 		$this['activated_on'] = date('Y-m-d H:i:s');
 		$this['fund_available'] = $this['fund_available'] + (($this->ref('kit_id')->get('joining_amount')) / 2);
 		$this->save();
+
+		$wr = $this->add('Model_WithdrawRequest');
+		$wr['from_id']=$this->id;
+		$wr['fund']=(($this->ref('kit_id')->get('joining_amount')) / 2);
+		$wr['type'] = 'Joining';
+		$wr->save();
+		
 		$this->distributeLevelAmountAbove();
 	}
 
