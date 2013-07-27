@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 class page_user_profile extends page_user {
 	function init(){
@@ -6,7 +6,11 @@ class page_user_profile extends page_user {
 
 		$this->add('H3')->set('Change your password');
 
-		$form = $this->add('Form');
+		$col=$this->add('Columns');
+		$col1=$col->addColumn(6);
+		$col2=$col->addColumn(6);
+
+		$form = $col1->add('Form');
 		if($_GET['success']){
 			$form->add('View_Info')->set('Password sucessfully changed');
 		}

@@ -42,7 +42,6 @@ class Frontend extends ApiFrontend {
             ;
         $auth->setModel('Member','username','password');
         $auth->allowPage(array('index','oppertunity','forgotpassword','contact'));
-        $auth->check();
 
         // This method is executed for ALL the pages you are going to add,
         // before the page class is loaded. You can put additional checks
@@ -58,12 +57,14 @@ class Frontend extends ApiFrontend {
             $this->menu->addMenuItem('index','Welcome')
             ->addMenuItem('oppertunity','Oppertunity')
             ->addMenuItem('user_dashboard','Member Area')
+            ->addMenuItem('index','Franchisee')
             ->addMenuItem('contact','Contact Us')
             ;
 
             // $this->menu->setBrand('FAST RICH');
             // $this->api->template->tryDel('header');
         }
+        $auth->check();
 
     }
 }

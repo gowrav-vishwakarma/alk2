@@ -11,6 +11,8 @@ class page_user_newregistration extends page_user {
 			$form->add('View_Info')->set('Member Added Successfully');
 		}
 
+		$form->add('View_Error')->setHTML('<b>NOTE: Kindly Fill all Fields as they are not editable after joining</b>');
+
 		$form->setModel('Model_Member',array('kit_id','name','username','password',"mobile_number",'email',"city","state",'bank_name','IFSC','account_number','bank_branch'));
 		$form->addField('line','sponsor');
 		$form->addField('password','re_password');
@@ -33,7 +35,7 @@ class page_user_newregistration extends page_user {
 
 			//check user name length
 
-			if(strlen($form->get('username'))>6) $form->displayError('username','Username can nott be greater then 6 character');
+			// if(strlen($form->get('username'))>6) $form->displayError('username','Username can nott be greater then 6 character');
 
 			//check sposor 
 			$sponsor=$this->add('Model_Member');

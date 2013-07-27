@@ -6,11 +6,28 @@ class page_user_fundtransfer extends page_user {
 
 		$this->add('H3')->set('Transfer fund to another user');
 
-		$form = $this->add('Form');
+		$col=$this->add('Columns');
+		$col1=$col->addColumn(6);
+		$col2=$col->addColumn(6);
+
+		$form = $col1->add('Form');
 		$form->addField('line','to_username')->validateNotNull();
 		$form->addField('password','you_password')->validateNotNull();
 		$form->addField('number','fund')->validateNotNull();
 		$form->addSubmit('Transfer');
+
+
+		$this->add('H3')->set('Fund Trasnfer Report');
+
+		$tabs = $this->add('Tabs');
+		$from_me_tab = $tabs->addTab('Fund transfered by me');
+		$to_me_tab = $tabs->addTab('Fund transfered to me');
+
+		$from_me_grid = $from_me_tab->add('Grid');
+		$from_me_grid->setModel($this->api->auth->model->ref('FundTransferFrom'));
+
+		$to_me_grid = $to_me_tab->add('Grid');
+		$to_me_grid->setModel($this->api->auth->model->ref('FundTransferTo'));
 
 		if($form->isSubmitted()){
 
@@ -37,21 +54,11 @@ class page_user_fundtransfer extends page_user {
 
 			$ft->save();
 
-			$form->js()->reload()->execute();
+			$form->js(null,array(
+					$from_me_grid->js()->reload(),
+					$to_me_grid->js()->reload()
+				))->reload()->execute();
 		}
-
-		$this->add('H3')->set('Fund Trasnfer Report');
-
-		$tabs = $this->add('Tabs');
-		$from_me_tab = $tabs->addTab('Fund transfered by me');
-		$to_me_tab = $tabs->addTab('Fund transfered to me');
-
-		$from_me_grid = $from_me_tab->add('Grid');
-		$from_me_grid->setModel($this->api->auth->model->ref('FundTransferFrom'));
-
-		$to_me_grid = $to_me_tab->add('Grid');
-		$to_me_grid->setModel($this->api->auth->model->ref('FundTransferTo'));
-
 
 	}
 }

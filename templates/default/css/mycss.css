@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Autour+One);
 /*!
  * Bootstrap v2.3.1
  *
@@ -7197,6 +7198,10 @@ input.ui-button,
   margin-bottom: 20px;
   list-style: none;
 }
+.navbar .nav > li > a {
+  font-family: 'Autour One', cursive;
+  font-size: 18px;
+}
 .ui-tabs {
   margin-left: 0;
   margin-bottom: 20px;
@@ -7232,8 +7237,15 @@ input.ui-button,
 .navbar .brand .navbar-inner {
   border: none;
 }
+.navbar .brand img {
+  width: 200px;
+  height: 90px;
+}
 body {
   background: url('../img/subtle_white_feathers.png');
+}
+.para {
+  font-size: 15px;
 }
 .footer {
   overflow: visible;
@@ -7507,17 +7519,81 @@ input[type="color"],
 .navbar-fixed-bottom .container {
   width: 940px;
 }
-
-.sentclass{
-  background-image: url("send_user.png"); 
-  background-repeat:no-repeat;
+.sentclass {
+  border: 2px solid;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #deeff5;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#add8e6));
+  background-image: linear-gradient(to bottom, #ffffff, #add8e6);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffadd8e6', GradientType=0);
+  background-color: #add8e6;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#ffffff), to(#add8e6));
+  background-image: -moz-linear-gradient(top, #ffffff, #add8e6);
+  background-image: -ms-linear-gradient(top, #ffffff, #add8e6);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #add8e6));
+  background-image: -webkit-linear-gradient(top, #ffffff, #add8e6);
+  background-image: -o-linear-gradient(top, #ffffff, #add8e6);
+  background-image: linear-gradient(top, #ffffff, #add8e6);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#add8e6', GradientType=0);
+  border-color: #add8e6 #add8e6 #72bcd4;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  width: 40%;
+  float: right;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  color: black;
+  background-color: #036690;
+  float: none;
+  background-image: url("send_user.png");
+  background-repeat: no-repeat;
   height: 50px;
-  padding-left: 50px;
+  padding-left: 80px;
+  padding-top: 20px;
+  font-size: 20px;
 }
-
-.reciveclass{
-  background-image: url("recive_user.png"); 
-  background-repeat:no-repeat;
+.reciveclass {
+  border: 2px solid;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #deeff5;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#add8e6));
+  background-image: linear-gradient(to bottom, #ffffff, #add8e6);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffadd8e6', GradientType=0);
+  background-color: #add8e6;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#ffffff), to(#add8e6));
+  background-image: -moz-linear-gradient(top, #ffffff, #add8e6);
+  background-image: -ms-linear-gradient(top, #ffffff, #add8e6);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #add8e6));
+  background-image: -webkit-linear-gradient(top, #ffffff, #add8e6);
+  background-image: -o-linear-gradient(top, #ffffff, #add8e6);
+  background-image: linear-gradient(top, #ffffff, #add8e6);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#add8e6', GradientType=0);
+  border-color: #add8e6 #add8e6 #72bcd4;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  width: 40%;
+  float: right;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  color: black;
+  background-color: #036690;
+  float: none;
+  background-image: url("send_user.png");
+  background-repeat: no-repeat;
   height: 50px;
-  padding-left: 50px;
+  padding-left: 80px;
+  padding-top: 20px;
+  font-size: 20px;
+  background-image: url("recive_user.png");
+}
+.label {
+  font-size: 15px;
 }
