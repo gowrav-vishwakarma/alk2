@@ -6,6 +6,11 @@ class page_user_myincome extends page_user {
 
 		$current_user = $this->add('Model_Member')->load($this->api->auth->model->id);
 
+		$this->add('H3')->set('My Details');
+		$this->add('Grid')->setModel($current_user->addCondition('id',$this->api->auth->model->id),array('name','username','mobile_number','bank_name','account_number','IFSC','bank_branch'));
+
+
+		$this->add('H3')->set('My Income');
 		$tabs = $this->add('Tabs');
 		
 		$withdraw_tab = $tabs->addTab("WithDraw Request");
