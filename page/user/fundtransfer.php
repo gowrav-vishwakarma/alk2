@@ -39,6 +39,8 @@ class page_user_fundtransfer extends page_user {
 
 			$member = $this->add('Model_Member')->load($this->api->auth->model->id);
 
+			if($member['fund_available'] < $form->get('fund') ) $form->displayError('fund','Funds Not Available');
+
 			if($member['password'] != $form->get('you_password'))
 				$form->displayError('you_password','Password is wrong');
 
@@ -55,6 +57,7 @@ class page_user_fundtransfer extends page_user {
 			$ft->save();
 
 			$form->js(null,array(
+					$form->js()->_selector('.wallet')->trigger('reload_me'),
 					$from_me_grid->js()->reload(),
 					$to_me_grid->js()->reload()
 				))->reload()->execute();

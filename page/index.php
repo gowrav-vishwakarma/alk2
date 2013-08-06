@@ -2,9 +2,7 @@
 class page_index extends Page {
     function init(){
         parent::init();
-        // Start your code here
-
-        // $this->add('CRUD')->setModel('FundRequest');
+        $this->js(true)->univ()->frameURL('Message',$this->api->url('message'));
     }
 
     function defaultTemplate(){

@@ -41,7 +41,7 @@ class Frontend extends ApiFrontend {
             //->check()
             ;
         $auth->setModel('Member','username','password');
-        $auth->allowPage(array('index','oppertunity','forgotpassword','contact'));
+        $auth->allowPage(array('index','oppertunity','forgotpassword','contact','message'));
 
         // This method is executed for ALL the pages you are going to add,
         // before the page class is loaded. You can put additional checks

@@ -4,7 +4,7 @@ class Model_Kit extends Model_Table {
 	function init(){
 		parent::init();
 
-		$this->addField('name');
+		$this->addField('name')->mandatory('Is must');
 		$this->addField('joining_amount');
 		$this->addField('pin_amount');
 		$this->addField('is_active')->type('boolean')->defaultvalue(true);

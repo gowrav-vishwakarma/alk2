@@ -61,7 +61,7 @@ class page_user_myincome extends page_user {
 		// =========== Daily Growth Income
 		$daily_grid = $daily_tab->add('Grid');
 		$daily_grid->setModel($current_member,array('day_1_growth','day_2_growth','day_3_growth','day_4_growth','day_5_growth','day_6_growth','day_7_growth'));
-
+		$daily_grid->addColumn('text','day_8_growth');
 		// $grid = $this->add('Grid');
 		// $grid->setModel($current_user);
 
