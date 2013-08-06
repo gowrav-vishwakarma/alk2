@@ -14,7 +14,7 @@ class page_user extends Page {
 		else
 			$msg= "You are Activated";
 
-		$this->add('H2')->set('Welcome '. $this->api->auth->model['name'] . " (".$this->api->auth->model['username'].") " . " [Commitement fund: ".$member->ref('kit_id')->get('joining_amount')."]" )->sub($msg);
+		$this->add('H2')->set('Welcome '. $this->api->auth->model['name'] . " (".$this->api->auth->model['username'].") " . " [Commitement fund: ".$member->ref('kit_id')->get('joining_amount')."][".$this->api->auth->model['join_on']."]" )->sub($msg);
 
 		$this->menu=$this->add('Menu');
 		$menu = $this->menu;

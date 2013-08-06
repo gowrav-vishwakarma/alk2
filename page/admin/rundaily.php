@@ -27,7 +27,8 @@ class page_admin_rundaily extends page_admin {
 				foreach($members as $m){
 					$members['day_'.$i.'_growth'] = $members['joining_amount'] * 20 / 100;
 					$members['last_daily_run_at']=date('Y-m-d H:i:s');
-					$members->save();
+					
+					$members->saveAndUnload();
 				}
 			}
 			$this->js()->univ()->successMessage("Daily Code Run")->execute();

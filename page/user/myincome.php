@@ -51,12 +51,15 @@ class page_user_myincome extends page_user {
 
 		// ========== LEVEL INCOME
 		$level_grid = $level_tab->add('Grid');
-		$current_member = $this->add('Model_Member')
+		$aa = $this->add('Model_Member')
 							->addCondition("id",$this->api->auth->model->id)
 							->load($this->api->auth->model->id);
 
-		$level_grid->setModel($current_member,array('level_2_fund','level_3_fund','level_4_fund','level_5_fund','level_6_fund','level_7_fund','level_8_fund','level_9_fund','level_10_fund'));
+		$level_grid->setModel($aa,array('level_2_fund','level_3_fund','level_4_fund','level_5_fund','level_6_fund','level_7_fund','level_8_fund','level_9_fund','level_10_fund'));
 		
+		$current_member = $this->add('Model_Member')
+							->addCondition("id",$this->api->auth->model->id)
+							->load($this->api->auth->model->id);
 
 		// =========== Daily Growth Income
 		$daily_grid = $daily_tab->add('Grid');
