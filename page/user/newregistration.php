@@ -53,7 +53,8 @@ class page_user_newregistration extends page_user {
 			if($existing->loaded()) $form->displayError("username",'This username already exists, try different one');
 
 			//check fund available
-			if($form->model->ref('kit_id')->get('pin_amount') > $this->api->auth->model->get('fund_available'))
+			$k=$this->add('Model_Kit')->load($form->get('kit_id'));
+			if($k->get('pin_amount') > $this->api->auth->model->get('fund_available'))
 				$form->displayError('kit_id', 'You do not have sufficeint funds');
 
 			//put sponsor id in form model
